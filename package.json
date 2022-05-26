@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/choeqq/my-react#readme",
   "dependencies": {
+    "nodemon": "^2.0.16",
     "typescript": "^4.7.2"
   }
 }
