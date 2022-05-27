@@ -9,4 +9,18 @@ export function updateDomProperties(dom: HTMLElement, prevProps, nextProps) {
       const eventType = name.toLocaleLowerCase().substring(2);
       dom.removeEventListener(eventType, prevProps[name]);
     });
+
+  // Remove attributes
+  Object.keys(prevProps)
+    .filter(isAttribute)
+    .forEach((name) => {
+      dom[name] = null;
+    });
+
+  // Set attributes
+  Object.keys(nextProps)
+    .filter(isAttribute)
+    .forEach((name) => {
+      dom[name] = nextProps[name];
+    });
 }
