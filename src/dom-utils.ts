@@ -6,7 +6,7 @@ export function updateDomProperties(dom: HTMLElement, prevProps, nextProps) {
   Object.keys(prevProps)
     .filter(isEvent)
     .forEach((name) => {
-      const eventType = name.toLocaleLowerCase().substring(2);
+      const eventType = name.toLowerCase().substring(2);
       dom.removeEventListener(eventType, prevProps[name]);
     });
 
@@ -22,5 +22,13 @@ export function updateDomProperties(dom: HTMLElement, prevProps, nextProps) {
     .filter(isAttribute)
     .forEach((name) => {
       dom[name] = nextProps[name];
+    });
+
+  // Add event listeners
+  Object.keys(nextProps)
+    .filter(isAttribute)
+    .forEach((name) => {
+      const eventType = name.toLowerCase().substring(2);
+      dom.addEventListener(eventType, nextProps[name]);
     });
 }
