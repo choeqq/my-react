@@ -4,6 +4,15 @@ import { createPublicInstance } from "./component";
 
 let rootInstance = null;
 
+export function reconcile(parentDom, instance, element) {
+  if (!instance) {
+    // Create instance
+    const newInstance = instantiate(element);
+    parentDom.appendChild(newInstance.dom);
+    return newInstance;
+  }
+}
+
 function instantiate(element) {
   const { type, props } = element;
   const isDomElement = typeof type === "string";
