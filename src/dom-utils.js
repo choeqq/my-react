@@ -1,6 +1,6 @@
-export function updateDomProperties(dom: HTMLElement, prevProps, nextProps) {
-  const isEvent = (name: string) => name.startsWith("on");
-  const isAttribute = (name: string) => !isEvent(name) && name !== "children";
+export function updateDomProperties(dom, prevProps, nextProps) {
+  const isEvent = (name) => name.startsWith("on");
+  const isAttribute = (name) => !isEvent(name) && name !== "children";
 
   // Remove event listeners
   Object.keys(prevProps)
