@@ -22,6 +22,8 @@ export function reconcile(parentDom, instance, element) {
   } else if (typeof element.type === "string") {
     updateDomProperties(instance.dom, instance.element.props, element.props);
     instance.childInstances = reconcileChildren(instance, element);
+    instance.element = element;
+    return instance;
   }
 }
 
