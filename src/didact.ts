@@ -10,6 +10,15 @@ export function reconcile(parentDom, instance, element) {
     const newInstance = instantiate(element);
     parentDom.appendChild(newInstance.dom);
     return newInstance;
+  } else if (!element) {
+    // Remove instance
+    parentDom.removeChild(instance.dom);
+    return null;
+  } else if (instance.element.type === "string") {
+    // Replace instance
+    const newInstance = instantiate(element);
+    parentDom.replaceChild(newInstance.dom, instance.dom);
+    return newInstance;
   }
 }
 
