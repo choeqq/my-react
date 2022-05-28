@@ -4,6 +4,12 @@ import { createPublicInstance } from "./component";
 
 let rootInstance = null;
 
+export function render(element, container) {
+  const prevInstance = rootInstance;
+  const nextInstance = reconcile(container, prevInstance, element);
+  rootInstance = nextInstance;
+}
+
 export function reconcile(parentDom, instance, element) {
   if (!instance) {
     // Create instance
