@@ -20,8 +20,18 @@ export function reconcile(parentDom, instance, element) {
     parentDom.replaceChild(newInstance.dom, instance.dom);
     return newInstance;
   } else if (typeof element.type === "string") {
+    // Update dom instance
     updateDomProperties(instance.dom, instance.element.props, element.props);
     instance.childInstances = reconcileChildren(instance, element);
+    instance.element = element;
+    return instance;
+  } else {
+    // Update composite instance
+    instance.publicInstance.props = element.props;
+    const childElement = instance.publicInstance.render();
+    const oldChildInstance = instance.childInstance;
+    const childInstance = reconcile(parentDom, oldChildInstance, childElement);
+    instance.dom = childInstance.dom;
     instance.element = element;
     return instance;
   }
