@@ -13,3 +13,13 @@ test.beforeEach((t) => {
   }
   t.context.root = root;
 });
+
+test("render div", (t) => {
+  const root = t.context.root;
+  const element = {
+    type: "div",
+    props: {},
+  };
+  render(element, root);
+  t.is(root.innerHTML, "<div></div>");
+});
