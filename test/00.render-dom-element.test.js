@@ -23,3 +23,18 @@ test("render div", (t) => {
   render(element, root);
   t.is(root.innerHTML, "<div></div>");
 });
+
+test("render div with children", (t) => {
+  const root = t.context.root;
+  const element = {
+    type: "div",
+    props: {
+      children: [
+        { type: "b", props: {} },
+        { type: "a", props: { href: "foo" } },
+      ],
+    },
+  };
+  render(element, root);
+  t.is(root.innerHTML, '<div><b></b><a href="foo"></a></div>');
+});
