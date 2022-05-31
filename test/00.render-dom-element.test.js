@@ -48,3 +48,18 @@ test("render div with props", (t) => {
   render(element, root);
   t.is(root.innerHTML, '<div id="foo"></div>');
 });
+
+test("render span with test child", t => {
+  const root = t.context.root;
+  const element = {
+    type: "span",
+    props: {
+      children: [
+        type: "TEXT ELEMENT",
+        props: {nodeValue: "Foo"}
+      ]
+    }
+  }
+  render(element, root);
+  t.is(root.innerHTML, "<span>Foo</span>")
+})
